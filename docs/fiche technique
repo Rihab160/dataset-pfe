@@ -1,0 +1,20 @@
+La Stationnarité : une série temporelle est dite stationnaire si ses propriétés sont constantes dans le temps (moyenne et variance)
+Si la série n'est pas stationnaire (moyenne ou variance évoluent dans le temps ) dans ce cas le modéle risque d'apprendre une structure instable et risque de mal généraliser dans le futur 
+le test de Dickey-Fuller est utilisé pour vérifier si la série est temporelle ou non
+
+La Décomposition : une série temporelles peut etre dcomposée en trois composantes:
+      la tendance : évolution globale à long terme (hausse et baisse)
+      la saisonnalité: motifs cycliques réccurents 
+      Résidu/bruit : composante aléatoire non expliqué par les deux premiéres composantes 
+Ces trois composants aident à mieux comprendre la structure de signal avant modélisation 
+
+L'Autocorrélation (ACF) : autocorrélation mesure la corrélation entre les valeurs actuelles et ses valeurs passées qui permet :
+      Mesurer la dépendance temporelle : si le passé influence réellement le présent 
+      La taille de la fenétre glissante: dans une approche de regression supervisé on utilise les valeurs passées comme variables explicatives 
+      Identifier des structures saisonniére : des pics dans l'ACF peuvent reveler une saisonnalité 
+
+Le Feature Engineering temporel : Une date n'est pas directement exploitable par un modéle donc on doit extraire des variables numériques telle que : 
+    l’heure de la journée :df['heure']=df.index.hour
+    le jour de la semaine: df['jour']=df.index.dayofweek
+    le mois=df['mois']=df.index.month
+    un indicateur permettant de savoir s’il s’agit d’un week-end:df['weekend']=df['jour'].isin([5,6])
